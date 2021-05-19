@@ -34,8 +34,11 @@ footer {
   margin: 1rem;
   display: grid;
   place-items: center;
+  box-shadow: 0 0 10px mistyrose;
+  border-radius: 10px;
 }
 
 .piece {
   color: black;
+  transition: 0.3s;
 }
