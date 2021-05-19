@@ -1,0 +1,41 @@
+:root {
+  --main-bg-color: black;
+  --main-box-color: mistyrose;
+  --main-text-color: white;
+  --main-font-size: 1.5rem;
+}
+
+body {
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  font-size: var(--main-font-size);
+  line-height: 1.5;
+}
+
+header {
+  text-align: center;
+}
+
+footer {
+  font-size: 0.8rem;
+}
+
+.game-board {
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  width: 400px;
+}
+
+.game-board-square {
+  width: 100px;
+  height: 100px;
+  background-color: var(--main-box-color);
+  margin: 1rem;
+  display: grid;
+  place-items: center;
+}
+
+.piece {
+  color: black;
+}
