@@ -1,13 +1,13 @@
 .timer {
   text-align: center;
-  height: 100px;
+  height: 150px;
 }
 
 footer {
   font-size: 0.8rem;
 }
 
-.main-container {
+.main-game-container {
   width: 100%;
 }
 
@@ -20,15 +20,19 @@ footer {
 
 .player-1-container,
 .player-2-container {
-  font-size: 2.5vw;
-  width: 15vw;
-  height: 15vw;
+  /* font-size: 2rem; */
+  width: 16vw;
+  height: 16vw;
+  max-width: 180px;
+  max-height: 180px;
+  min-width: 131px;
+  min-height: 131px;
   background-color: var(--main-box-color);
   box-shadow: 0 0 10px mistyrose;
   border-radius: 10px;
   opacity: 0.9;
+  line-height: max(min(16vw, 180px), 131px);
   text-align: center;
-  line-height: 15vw;
 }
 
 .player1-icon,
@@ -36,6 +40,8 @@ footer {
   position: relative;
   width: 8vw;
   height: 8vw;
+  max-width: 96px;
+  max-height: 96px;
   top: 1rem;
   z-index: -1;
   color: whitesmoke;
@@ -45,6 +51,9 @@ footer {
 .player-2-container > .name {
   /* position: absolute; */
   text-align: center;
+
+  width: 100%;
+  height: 100%;
 }
 
 .game-board-container {
@@ -52,6 +61,8 @@ footer {
   opacity: 0.8;
   width: 44.9vw;
   height: 44.9vw;
+  max-width: 539px;
+  max-height: 539px;
   display: flex;
 }
 
@@ -64,11 +75,14 @@ footer {
   height: 100%;
   border: 2px solid var(--main-game-board-color);
   box-shadow: inset 0 0 50px var(--main-game-board-color);
+  border-radius: 10px;
 }
 
 .game-board-square {
   width: 12vw;
   height: 12vw;
+  max-width: 144px;
+  max-height: 144px;
   background-color: var(--main-box-color);
   display: grid;
   place-items: center;

@@ -19,11 +19,13 @@ h6 {
 }
 
 body {
+  max-width: 1200px;
+  margin: 0 auto;
   font-family: 'Monda', sans-serif;
   color: var(--main-text-color);
   font-size: var(--main-font-size);
   line-height: 1.5;
-  height: 100vh;
+  /* height: 100vh; */
   font-weight: 100;
   background: var(--main-bg-color);
   overflow-y: hidden;

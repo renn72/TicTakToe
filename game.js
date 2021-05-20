@@ -74,7 +74,6 @@ function handlerBoardSquare(event) {
   if (gameWon) {
     return;
   }
-  currentTurn++;
 
   event.target.firstElementChild.src = currentPlayer.icon;
   event.target.classList.add('clicked');
@@ -96,13 +95,16 @@ function handlerBoardSquare(event) {
   } else {
     currentPlayer = player1;
   }
-
-  if (currentTurn % 2 !== 0) {
-    gameStateDisplay.textContent = `its ${player1.name}'s turn`;
+  if (currentTurn === 8) {
   } else {
-    gameStateDisplay.textContent = `its ${player2.name}'s turn`;
-    aiCalc();
+    if (currentTurn % 2 == 0) {
+      gameStateDisplay.textContent = `its ${player1.name}'s turn`;
+    } else {
+      gameStateDisplay.textContent = `its ${player2.name}'s turn`;
+      aiCalc();
+    }
   }
+  currentTurn++;
 }
 
 function setDifficulty(event) {
