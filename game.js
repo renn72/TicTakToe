@@ -16,11 +16,13 @@ const winningPlays = [
   [6, 7, 8],
 ];
 let player1 = {
-  name: 'x',
+  name: 'john',
+  piece: 'x',
   plays: [],
 };
 let player2 = {
-  name: 'o',
+  name: 'joe',
+  piece: 'o',
   plays: [],
 };
 let currentPlayer = player1;
@@ -30,7 +32,7 @@ let currentPlayer = player1;
 function handlerBoardSquare(event) {
   currentTurn++;
 
-  event.target.firstElementChild.textContent = currentPlayer.name;
+  event.target.firstElementChild.textContent = currentPlayer.piece;
   event.target.classList.add('clicked');
 
   currentPlayer.plays.push(Number(event.target.dataset.loc));
@@ -39,7 +41,7 @@ function handlerBoardSquare(event) {
 
   if (checkWinState()) {
     console.log('winner');
-    gameStateDisplay.textContent = `${currentPlayer.name} wins!`;
+    gameStateDisplay.textContent = `${currentPlayer.piece} wins!`;
     return;
   }
 

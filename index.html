@@ -4,62 +4,41 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/background.css" />
+
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/splash.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Document</title>
   </head>
   <body>
-    <div class="container">
-      <header>Tic Tak Toe</header>
-      <div class="top"></div>
-      <div class="perspective-parent">
-        <div class="perspective-container">
-          <section class="game-board">
-            <div class="row-1">
-              <div class="game-board-square square0" data-loc="0">
-                <div class="piece"></div>
-              </div>
-              <div class="game-board-square square1" data-loc="1">
-                <div class="piece"></div>
-              </div>
-              <div class="game-board-square square2" data-loc="2">
-                <div class="piece"></div>
-              </div>
-            </div>
-            <div class="row-2">
-              <div class="game-board-square square3" data-loc="3">
-                <div class="piece"></div>
-              </div>
-              <div class="game-board-square square4" data-loc="4">
-                <div class="piece"></div>
-              </div>
-              <div class="game-board-square square5" data-loc="5">
-                <div class="piece"></div>
-              </div>
-            </div>
-            <div class="row-3">
-              <div class="game-board-square square6" data-loc="6">
-                <div class="piece"></div>
-              </div>
-              <div class="game-board-square square7" data-loc="7">
-                <div class="piece"></div>
-              </div>
-              <div class="game-board-square square8" data-loc="8">
-                <div class="piece"></div>
-              </div>
-            </div>
-          </section>
-          <section class="tic-tak-shooter-container">
-            <img src="./images/cannon.png" id="cannon-img" alt="" />
-
-            <div class="shooter"></div>
-          </section>
-        </div>
+    <div class="splash-screen-container">
+      <h1 class="splash-screen-header">
+        <div class="tic-splash">TIC</div>
+        <div class="tac-splash">TAC</div>
+        <div class="toe-splash">TOE</div>
+      </h1>
+      <div class="player-name-container">
+        <input type="text" id="player-name" placeholder="name" />
       </div>
-      <br />
-      <div id="game-state-display">Player x to start</div>
+      <ul class="difficulty-options">
+        <li class="difficulty-setting selected-difficulty">Easy</li>
+        <li class="difficulty-setting">Medium</li>
+        <li class="difficulty-setting">Hard</li>
+      </ul>
+      <!-- Cool Background -->
 
-      <footer>copyright</footer>
+      <a href="./game.html" class="start-button">Start Game</a>
     </div>
-    <script src="game.js"></script>
+    <div class="lines">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <script src="./game.js"></script>
   </body>
 </html>

@@ -1,0 +1,128 @@
+a.start-button {
+  animation: fadeIn 2s forwards;
+  animation-delay: 2s;
+  text-decoration: none;
+  color: wheat;
+  border: 1px solid white;
+  padding: 1rem;
+  margin: 2rem;
+  opacity: 0;
+}
+a.start-button:visited {
+  text-decoration: none;
+  color: wheat;
+}
+a.start-button:hover {
+  border: 1px solid red;
+}
+
+.splash-screen-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.splash-screen-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 4rem 0;
+}
+
+.splash-screen-header div {
+  width: 100%;
+  text-align: center;
+  text-shadow: 0 0 5px white;
+  /* color: black; */
+  font-size: 5rem;
+}
+
+.tic-splash {
+  animation: txtFlyIn-1 1.5s cubic-bezier(0.45, 0.08, 0.435, 1.65);
+}
+.tac-splash {
+  animation: txtFlyIn-2 2s cubic-bezier(0.45, 0.08, 0.435, 1.65);
+}
+.toe-splash {
+  animation: txtFlyIn-3 2.5s cubic-bezier(0.45, 0.08, 0.435, 1.65);
+}
+
+#player-name {
+  /* position: relative; */
+  animation: fadeIn 2s forwards;
+  animation-delay: 2s;
+  padding: 1rem;
+  text-align: center;
+  opacity: 0;
+  font-family: inherit;
+  font-size: 1rem;
+  user-select: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.8;
+  }
+}
+
+.difficulty-options {
+  width: 10rem;
+  margin: 1rem;
+  list-style: none;
+}
+
+.difficulty-setting {
+  width: 100%;
+  text-align: center;
+  animation: fadeIn 2s forwards;
+  animation-delay: 2s;
+  opacity: 0;
+}
+
+.selected-difficulty {
+  border: 1px solid white;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes txtFlyIn-1 {
+  0% {
+    transform: translateX(-60%);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+@keyframes txtFlyIn-2 {
+  0% {
+    transform: translateX(80%);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+@keyframes txtFlyIn-3 {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0.1;
+    color: black;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+    color: blanchedalmond;
+  }
+}
