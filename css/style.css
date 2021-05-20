@@ -29,7 +29,7 @@ footer {
 
 .perspective-parent {
   perspective: 500px;
-  width: 500px;
+  width: 600px;
   height: 400px;
   margin: 0 10rem;
 }
@@ -110,14 +110,24 @@ footer {
   transform: scale(0.8, 0.6) rotateX(-40deg);
 }
 
-.tick-tak-shooter-container {
-}
+/* .tick-tak-shooter-container {
+  
+} */
 
 .shooter {
+  margin-left: 6rem;
   width: 50px;
   height: 100px;
-  background-color: white;
-  margin-left: 1rem;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#cannon-img {
+  position: absolute;
+  margin-left: 6rem;
+  top: -40px;
+  display: block;
+  transform: rotateX(-50deg);
+  z-index: 2;
 }
 
 #game-state-display {
