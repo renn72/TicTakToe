@@ -31,6 +31,7 @@ function handlerBoardSquare(event) {
   currentTurn++;
 
   event.target.firstElementChild.textContent = currentPlayer.name;
+  event.target.classList.add('clicked');
 
   currentPlayer.plays.push(Number(event.target.dataset.loc));
   console.log(event.target.dataset.loc);

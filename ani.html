@@ -1,0 +1,248 @@
+<link
+  href="http://fonts.googleapis.com/css?family=Press+Start+2P"
+  rel="stylesheet"
+  type="text/css"
+/>
+<script
+  src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+  type="text/javascript"
+></script>
+
+<style>
+  #ball1 {
+    z-index: -5;
+    width: 100px;
+    height: 100px;
+    color: black;
+    background-color: white;
+
+    position: fixed;
+    top: 2px;
+    left: 200px;
+    border-radius: 50px;
+  }
+  #ball1txt {
+    position: fixed;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    margin-top: 45px;
+    text-align: center;
+  }
+
+  #ball2 {
+    z-index: -5;
+    width: 50px;
+    height: 50px;
+    color: black;
+    background-color: white;
+
+    position: fixed;
+    top: 2px;
+    left: 400px;
+    border-radius: 25px;
+  }
+  #ball2txt {
+    position: fixed;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 7px;
+    margin-top: 22px;
+    text-align: center;
+  }
+
+  #globe1 {
+    z-index: -10;
+    position: fixed;
+    top: 30px;
+    left: 400px;
+
+    width: 400px;
+    height: 400px;
+    color: #232323;
+    background-color: #0f0f0f;
+    border-radius: 200px;
+    opacity: 0.5;
+  }
+  #ball3txt {
+    position: fixed;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 40px;
+    margin-top: 200px;
+    text-align: center;
+  }
+
+  #ball3 {
+    color: white;
+    background-color: red;
+    z-index: 1;
+    position: fixed;
+  }
+
+  #ball4txt {
+    position: fixed;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 5px;
+    margin-top: 8px;
+    text-align: center;
+  }
+</style>
+
+<script>
+  $(document).ready(function () {
+    /*** ANIMATIONS ***/
+    //detect browser dimensions
+    var height = $(window).height() - 100;
+    var width = $(window).width() - 100;
+
+    var height2 = height + 50;
+    var width2 = width + 50;
+
+    var xSpeed1 = 1;
+    var ySpeed1 = 1;
+
+    var xSpeed2 = -1;
+    var ySpeed2 = 1;
+
+    setInterval(function () {
+      //console.log("moved");
+      /** ball 1 **/
+      var b1X = $('#ball1').css('left');
+      var b1Y = $('#ball1').css('top');
+
+      b1X = parseInt(b1X);
+      b1Y = parseInt(b1Y);
+
+      if (b1X >= width || b1X <= 0) xSpeed1 *= -1;
+      if (b1Y >= height || b1Y <= 0) ySpeed1 *= -1;
+
+      b1X = String(b1X + xSpeed1) + 'px';
+      b1Y = String(b1Y + ySpeed1) + 'px';
+
+      $('#ball1').css({
+        left: b1X,
+        top: b1Y,
+      });
+
+      /** BALL 2 **/
+
+      var b2X = $('#ball2').css('left');
+      var b2Y = $('#ball2').css('top');
+
+      b2X = parseInt(b2X);
+      b2Y = parseInt(b2Y);
+
+      if (b2X >= width2 || b2X <= 0) xSpeed2 *= -1;
+      if (b2Y >= height2 || b2Y <= 0) ySpeed2 *= -1;
+
+      b2X = String(b2X + xSpeed2) + 'px';
+      b2Y = String(b2Y + ySpeed2) + 'px';
+
+      $('#ball2').css({
+        left: b2X,
+        top: b2Y,
+      });
+
+      //console.log("ball positions-> x: " + b1X + " y: " + b1Y);
+    }, 10);
+
+    /*** make globe move in circular motion ***/
+    // center point = a,b  => $(window).width() / 2, $(window).height() / 2
+    // r = radius
+    // eqn = (x-a)^2 + (y-b)^2 = r^2
+
+    var x_center = $(window).width() / 2.0;
+    var y_center = $(window).height() / 2.0;
+    var radius = 100;
+
+    // starting coords
+    var x_pos = x_center;
+    var y_pos = y_center;
+    x_pos = String(x_pos) + 'px';
+    y_pos = String(y_pos) + 'px';
+
+    $('#globe1').css({
+      left: x_pos,
+      top: y_pos,
+      backgroundColor: '#232323',
+      color: '#FFFFFF',
+    });
+
+    // size changing properties
+    var widthExp = 1;
+    var heightExp = 1;
+
+    var theta = 3.14159 / 2.0;
+    setInterval(function () {
+      // size changing section
+      var globe_width = parseInt($('#globe1').css('width'));
+      var globe_height = parseInt($('#globe1').css('height'));
+
+      // change size of globe
+      if (globe_width >= $(window).width() * 1.5) {
+        widthExp *= -1;
+        heightExp *= -1;
+        console.log('shrinking');
+      }
+      if (globe_width <= $(window).width() / 4) {
+        widthExp *= -1;
+        heightExp *= -1;
+        console.log('growing');
+      }
+
+      globe_width = String(globe_width + widthExp) + 'px';
+      globe_height = String(globe_height + heightExp) + 'px';
+      // recalc radius so it looks like a circle again
+      var globe_rad = String(parseInt(globe_width) / 2) + 'px';
+
+      // movement section
+      x_pos = radius * Math.cos(theta) + x_center / 4.0;
+      y_pos = radius * Math.sin(theta) + y_center / 4.0;
+      x_pos = String(x_pos) + 'px';
+      y_pos = String(y_pos) + 'px';
+
+      $('#globe1').css({
+        left: x_pos,
+        top: y_pos,
+        width: globe_width,
+        height: globe_height,
+        borderRadius: globe_rad,
+      });
+
+      theta += 3.14159 / 180.0;
+      if (theta >= 2.0 * 3.14159) theta = 0;
+    }, 50);
+
+    // small circle rotating
+
+    var bl3_x = x_center + 200;
+    var bl3_y = y_center;
+    bl3_x = String(bl3_x) + 'px';
+    bl3_y = String(bl3_y) + 'px';
+    $('#ball3').css({
+      top: bl3_y,
+      left: bl3_x,
+      height: '20px',
+      width: '20px',
+      borderRadius: '10px',
+    });
+
+    var radius3 = x_center / 2.0;
+    var theta3 = 3.14159 / 2.0;
+    setInterval(function () {
+      bl3_x = radius3 * Math.cos(theta) + x_center;
+      bl3_y = radius3 * Math.sin(theta) + y_center;
+      bl3_x = String(bl3_x) + 'px';
+      bl3_y = String(bl3_y) + 'px';
+      $('#ball3').css({
+        top: bl3_y,
+        left: bl3_x,
+      });
+      theta3 += 3.14159 / 180.0;
+      if (theta3 >= 2.0 * 3.14159) theta3 = 0;
+    }, 50);
+  });
+</script>
+
+<div id="ball1"><span id="ball1txt">???</span></div>
+<div id="ball2"><span id="ball2txt">???</span></div>
+<div id="globe1"><span id="ball3txt">???</span></div>
+<div id="ball3"><span id="ball4txt">???</span></div>

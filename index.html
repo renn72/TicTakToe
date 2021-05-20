@@ -10,36 +10,52 @@
   <body>
     <div class="container">
       <header>Tic Tak Toe</header>
-      <section class="game-board">
-        <div class="game-board-square" data-loc="0">
-          <div class="piece"></div>
+      <div class="top"></div>
+      <div class="perspective-parent">
+        <div class="perspective-container">
+          <section class="game-board">
+            <div class="row-1">
+              <div class="game-board-square square0" data-loc="0">
+                <div class="piece"></div>
+              </div>
+              <div class="game-board-square square1" data-loc="1">
+                <div class="piece"></div>
+              </div>
+              <div class="game-board-square square2" data-loc="2">
+                <div class="piece"></div>
+              </div>
+            </div>
+            <div class="row-2">
+              <div class="game-board-square square3" data-loc="3">
+                <div class="piece"></div>
+              </div>
+              <div class="game-board-square square4" data-loc="4">
+                <div class="piece"></div>
+              </div>
+              <div class="game-board-square square5" data-loc="5">
+                <div class="piece"></div>
+              </div>
+            </div>
+            <div class="row-3">
+              <div class="game-board-square square6" data-loc="6">
+                <div class="piece"></div>
+              </div>
+              <div class="game-board-square square7" data-loc="7">
+                <div class="piece"></div>
+              </div>
+              <div class="game-board-square square8" data-loc="8">
+                <div class="piece"></div>
+              </div>
+            </div>
+          </section>
+          <section class="tic-tak-shooter-container">
+            <div class="shooter"></div>
+          </section>
         </div>
-        <div class="game-board-square" data-loc="1">
-          <div class="piece"></div>
-        </div>
-        <div class="game-board-square" data-loc="2">
-          <div class="piece"></div>
-        </div>
-        <div class="game-board-square" data-loc="3">
-          <div class="piece"></div>
-        </div>
-        <div class="game-board-square" data-loc="4">
-          <div class="piece"></div>
-        </div>
-        <div class="game-board-square" data-loc="5">
-          <div class="piece"></div>
-        </div>
-        <div class="game-board-square" data-loc="6">
-          <div class="piece"></div>
-        </div>
-        <div class="game-board-square" data-loc="7">
-          <div class="piece"></div>
-        </div>
-        <div class="game-board-square" data-loc="8">
-          <div class="piece"></div>
-        </div>
-        <div id="game-state-display">Player x to start</div>
-      </section>
+      </div>
+      <br />
+      <div id="game-state-display">Player x to start</div>
+
       <footer>copyright</footer>
     </div>
     <script src="game.js"></script>
