@@ -1,6 +1,8 @@
 :root {
-  --main-bg-color: radial-gradient(#1b1b2c, #000000);
-  --main-box-color: rgba(66, 66, 66, 0.5);
+  --main-bg-color: radial-gradient(#353557, #1e1e35);
+  --main-box-color: #11112580;
+
+  --main-game-board-color: #010722;
   --main-text-color: white;
   --main-font-size: 1.5rem;
 }
@@ -25,5 +27,5 @@ body {
   font-weight: 100;
   background: var(--main-bg-color);
   overflow-y: hidden;
-  display: flex;
+  /* display: flex; */
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone="no"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-500 -500 1000 1000">
+	<g id="Cross-66">
+		<title>Cross LXVI, by Adam Stanislav</title>
+
+		<path d="m-500-200a100 100 0 0 0 300-300h100a200 200 0 0 1 -400 400z"/>
+		<path d="m200-500a100 100 0 0 0 300 300v100a200 200 0 0 1 -400-400z"/>
+		<path d="m200 500a100 100 0 0 1 300-300v-100a200 200 0 0 0 -400 400z"/>
+		<path d="m-500 200a100 100 0 0 1 300 300h100a200 200 0 0 0 -400-400z"/>
+	</g>
+</svg>

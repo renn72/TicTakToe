@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/background.css" />
-
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/background.css" />
     <link rel="stylesheet" href="./css/splash.css" />
+    <link rel="stylesheet" href="./css/game.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Monda:wght@400;700&display=swap"
@@ -23,22 +23,69 @@
         <div class="toe-splash">TOE</div>
       </h1>
       <div class="player-name-container">
-        <input type="text" id="player-name" placeholder="name" />
+        <input type="text" id="player-name" placeholder="name" maxlength="10" />
       </div>
       <ul class="difficulty-options">
-        <li class="difficulty-setting selected-difficulty">Easy</li>
-        <li class="difficulty-setting">Medium</li>
-        <li class="difficulty-setting">Hard</li>
+        <li class="difficulty-setting easy selected-difficulty">Easy</li>
+        <li class="difficulty-setting medium">Medium</li>
+        <li class="difficulty-setting hard">Hard</li>
       </ul>
-      <!-- Cool Background -->
+      <div class="difficulty-description">Easy: Simple Ai, no turn timer</div>
+      <button class="start-button">Start Game</button>
+    </div>
 
-      <a href="./game.html" class="start-button">Start Game</a>
+    <div class="main-game-container hidden">
+      <div class="timer"></div>
+      <div class="perspective-parent">
+        <div class="player-1-container">
+          <div class="name"></div>
+          <img class="player1-icon" />
+        </div>
+        <div class="game-board-container">
+          <section class="game-board">
+            <div class="game-board-square square0" data-loc="0">
+              <img class="piece"></img>
+            </div>
+            <div class="game-board-square square1" data-loc="1">
+              <img class="piece"></img>
+            </div>
+            <div class="game-board-square square2" data-loc="2">
+              <img class="piece"></img>
+            </div>
+            <div class="game-board-square square3" data-loc="3">
+              <img class="piece"></img>
+            </div>
+            <div class="game-board-square square4" data-loc="4">
+              <img class="piece"></img>
+            </div>
+            <div class="game-board-square square5" data-loc="5">
+              <img class="piece"></img>
+            </div>
+            <div class="game-board-square square6" data-loc="6">
+              <img class="piece"></img>
+            </div>
+            <div class="game-board-square square7" data-loc="7">
+              <img class="piece"></img>
+            </div>
+            <div class="game-board-square square8" data-loc="8">
+              <img class="piece"></img>
+            </div>
+          </section>
+        </div>
+        <div class="player-2-container">
+          <div class="name"></div>
+          <img class="player2-icon" />
+        </div>
+      </div>
+      <br />
+      <div id="game-state-display"></div>
+      <button class="restart-btn">Restart</button>
     </div>
     <div class="lines">
       <div class="line"></div>
       <div class="line"></div>
       <div class="line"></div>
     </div>
-    <script src="./game.js"></script>
+    <script src="game.js"></script>
   </body>
 </html>
