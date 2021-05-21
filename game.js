@@ -176,7 +176,6 @@ function aiCalc() {
       if (count === 2) {
         play.forEach((square) => {
           if (!playedSquares.includes(square)) {
-            console.log('MegaBrain will play ' + square);
             luckySquare = square;
           }
         });
@@ -190,6 +189,8 @@ function aiCalc() {
       }
     }
   }
+  console.log('MegaBrain will play ' + luckySquare);
+
   setTimeout(function () {
     aiThinking = false;
     gameBoardSquares[luckySquare].click();
@@ -283,8 +284,6 @@ function startTimer() {
   if (currentTurn === 9) {
     return;
   }
-  console.log('timer');
-  console.log(difficulty);
   if (difficulty === 2) {
     timerDisplay.textContent = '5';
     count4 = setTimeout(function () {

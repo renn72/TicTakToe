@@ -29,5 +29,6 @@ body {
   font-weight: 100;
   background: var(--main-bg-color);
   overflow-y: hidden;
+  overflow-x: hidden;
   /* display: flex; */
 }
