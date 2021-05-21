@@ -1,6 +1,7 @@
-.timer {
+.timer-display {
   text-align: center;
-  height: 150px;
+  padding: 2rem;
+  font-size: 4rem;
 }
 
 footer {
@@ -103,6 +104,10 @@ footer {
 
 .hidden {
   display: none;
+}
+
+.disappear {
+  opacity: 0;
 }
 
 #game-state-display {

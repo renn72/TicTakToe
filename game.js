@@ -19,6 +19,8 @@ const restartButton = document.querySelector('.restart-btn');
 
 const difficultyDescription = document.querySelector('.difficulty-description');
 
+const timerDisplay = document.querySelector('.timer-display');
+
 const iconImages = [
   'images/Cross-66.svg',
   'images/duck-line-art.svg',
@@ -67,11 +69,17 @@ function startGame() {
   setPlayerIcon();
   clearSplash();
   generateGame();
+  setTimer();
+  startTimer();
+
   gameStateDisplay.textContent = `its ${player1.name}'s turn`;
 }
 
 function handlerBoardSquare(event) {
   if (gameWon) {
+    return;
+  }
+  if (currentTurn === 10) {
     return;
   }
 
@@ -81,8 +89,6 @@ function handlerBoardSquare(event) {
   currentPlayer.plays.push(Number(event.target.dataset.loc));
   playedSquares.push(Number(event.target.dataset.loc));
   console.log(playedSquares);
-  console.log(event.target.dataset.loc);
-  console.log(currentPlayer.plays);
 
   if (checkWinState()) {
     console.log('winner');
@@ -95,8 +101,12 @@ function handlerBoardSquare(event) {
   } else {
     currentPlayer = player1;
   }
-  if (currentTurn === 8) {
+  console.log(currentTurn);
+  if (currentTurn === 9) {
+    console.log('draw');
+    gameStateDisplay.textContent = "It's a Draw!";
   } else {
+    console.log('playing');
     if (currentTurn % 2 == 0) {
       gameStateDisplay.textContent = `its ${player1.name}'s turn`;
     } else {
@@ -104,6 +114,9 @@ function handlerBoardSquare(event) {
       aiCalc();
     }
   }
+  clearTimer();
+  startTimer();
+
   currentTurn++;
 }
 
@@ -135,20 +148,7 @@ function aiCalc() {
     }
   } else {
     let count = 0;
-    // check to see if I can win
-    winningPlays.forEach((play) => {
-      count = 0;
-      play.forEach((square) => {
-        if (player2.plays.includes(square)) {
-          count++;
-        }
-      });
-      if (count === 2) {
-        play.forEach((square) => {
-          if (!playedSquares.includes(square)) luckySquare = square;
-        });
-      }
-    });
+
     // check to see if player can win, if so stop them
     winningPlays.forEach((play) => {
       count = 0;
@@ -163,7 +163,23 @@ function aiCalc() {
         });
       }
     });
-
+    // check to see if I can win
+    winningPlays.forEach((play) => {
+      count = 0;
+      play.forEach((square) => {
+        if (player2.plays.includes(square)) {
+          count++;
+        }
+      });
+      if (count === 2) {
+        play.forEach((square) => {
+          if (!playedSquares.includes(square)) {
+            console.log('MegaBrain will play ' + square);
+            luckySquare = square;
+          }
+        });
+      }
+    });
     // otherwise go random
     if (luckySquare === -1) {
       luckySquare = Math.floor(Math.random() * 8);
@@ -172,11 +188,9 @@ function aiCalc() {
       }
     }
   }
-  console.log(luckySquare);
-  console.log(gameBoardSquares[luckySquare]);
   setTimeout(function () {
     gameBoardSquares[luckySquare].click();
-  }, 1500);
+  }, 2500);
 }
 
 // checking for a winner
@@ -242,6 +256,56 @@ function generateGame() {
     square.children[0].src = '';
   });
 }
+
+function setTimer() {
+  if (difficulty === 2) {
+    timerDisplay.classList.remove('disappear');
+    timerDisplay.textContent = '5';
+  }
+}
+
+var count4 = null;
+var count3 = null;
+var count2 = null;
+var count1 = null;
+var count0 = null;
+
+function startTimer() {
+  if (currentTurn === 9) {
+    return;
+  }
+  console.log('timer');
+  console.log(difficulty);
+  if (difficulty === 2) {
+    timerDisplay.textContent = '5';
+    count4 = setTimeout(function () {
+      timerDisplay.textContent = '4';
+    }, 980);
+    count3 = setTimeout(function () {
+      timerDisplay.textContent = '3';
+    }, 1980);
+    count2 = setTimeout(function () {
+      timerDisplay.textContent = '2';
+    }, 2980);
+    count1 = setTimeout(function () {
+      timerDisplay.textContent = '1';
+    }, 3980);
+    count0 = setTimeout(function () {
+      timerDisplay.textContent = '0';
+      flashTimerRed();
+    }, 4980);
+  }
+}
+
+function clearTimer() {
+  clearTimeout(count4);
+  clearTimeout(count3);
+  clearTimeout(count2);
+  clearTimeout(count1);
+  clearTimeout(count0);
+}
+
+function flashTimerRed() {}
 
 // Listeners
 gameBoardSquares.forEach((x) => {
