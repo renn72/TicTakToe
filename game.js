@@ -1,6 +1,8 @@
 // Dom Elements
 const gameBoardSquares = document.querySelectorAll('.game-board-square');
 const gameStateDisplay = document.getElementById('game-state-display');
+const gameStateDisplayText = document.getElementById('game-state-display-text');
+const gameStateDisplayImage = document.getElementById('game-state-display-img');
 const playerName = document.getElementById('player-name');
 const startButton = document.querySelector('.start-button');
 const splashScreenContainer = document.querySelector(
@@ -31,7 +33,7 @@ const iconImages = [
 // Game Variables
 
 let difficulty = 0;
-let currentTurn = 1;
+let currentTurn = 0;
 let playedSquares = [];
 const winningPlays = [
   [0, 1, 2],
@@ -57,12 +59,14 @@ let player2 = {
 };
 let currentPlayer = player1;
 let gameWon = false;
+let currentPlayerPiece = 'x';
+let aiThinking = false;
 
 // handlers
 
 function startGame() {
   console.log('start game');
-  currentTurn = 1;
+  currentTurn = 0;
   playedSquares = [];
   gameWon = false;
   setPlayerName();
@@ -70,16 +74,10 @@ function startGame() {
   clearSplash();
   generateGame();
   setTimer();
-  startTimer();
-
-  gameStateDisplay.textContent = `its ${player1.name}'s turn`;
 }
 
 function handlerBoardSquare(event) {
-  if (gameWon) {
-    return;
-  }
-  if (currentTurn === 10) {
+  if (gameWon || currentTurn === 10 || currentTurn === 0 || aiThinking) {
     return;
   }
 
@@ -92,25 +90,22 @@ function handlerBoardSquare(event) {
 
   if (checkWinState()) {
     console.log('winner');
-    gameStateDisplay.textContent = `${currentPlayer.name} wins!`;
+    gameStateDisplayText.textContent = `${currentPlayer.name} wins!`;
     return;
   }
 
-  if (currentPlayer === player1) {
-    currentPlayer = player2;
-  } else {
-    currentPlayer = player1;
-  }
   console.log(currentTurn);
   if (currentTurn === 9) {
     console.log('draw');
-    gameStateDisplay.textContent = "It's a Draw!";
+    gameStateDisplayText.textContent = "It's a Draw!";
   } else {
     console.log('playing');
-    if (currentTurn % 2 == 0) {
-      gameStateDisplay.textContent = `its ${player1.name}'s turn`;
+    if (currentPlayer === player2) {
+      currentPlayer = player1;
+      gameStateDisplayImage.src = currentPlayer.icon;
     } else {
-      gameStateDisplay.textContent = `its ${player2.name}'s turn`;
+      currentPlayer = player2;
+      gameStateDisplayImage.src = currentPlayer.icon;
       aiCalc();
     }
   }
@@ -140,11 +135,12 @@ function setDifficulty(event) {
 // AI
 
 function aiCalc() {
+  aiThinking = true;
   let luckySquare = -1;
   if (difficulty < 1) {
-    luckySquare = Math.floor(Math.random() * 8);
+    luckySquare = Math.floor(Math.random() * 9);
     while (playedSquares.includes(luckySquare)) {
-      luckySquare = Math.floor(Math.random() * 8);
+      luckySquare = Math.floor(Math.random() * 9);
     }
   } else {
     let count = 0;
@@ -189,6 +185,7 @@ function aiCalc() {
     }
   }
   setTimeout(function () {
+    aiThinking = false;
     gameBoardSquares[luckySquare].click();
   }, 2500);
 }
@@ -307,6 +304,33 @@ function clearTimer() {
 
 function flashTimerRed() {}
 
+function pickWhoStarts() {
+  let randStart = Math.random();
+  if (randStart > 0.9) {
+    currentPlayer = player1;
+  } else {
+    currentPlayer = player2;
+  }
+  currentTurn = 1;
+  gameStateDisplayText.classList.add('hidden');
+  gameStateDisplay.style.transition =
+    'all 3.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+  gameStateDisplay.style.transform = 'rotateX(720deg)';
+
+  gameStateDisplayImage.src = currentPlayer.icon;
+  gameStateDisplayImage.classList.remove('hidden');
+  gameStateDisplayImage.style.animation =
+    'fadeIn 4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+  if (currentPlayer === player2) {
+    setTimeout(function () {
+      aiCalc();
+    }, 3000);
+  }
+  setTimeout(function () {
+    startTimer();
+  }, 2000);
+}
+
 // Listeners
 gameBoardSquares.forEach((x) => {
   x.addEventListener('click', handlerBoardSquare);
@@ -319,3 +343,5 @@ restartButton.addEventListener('click', startGame);
 difficultySettings.forEach((setting) => {
   setting.addEventListener('click', setDifficulty);
 });
+
+gameStateDisplay.addEventListener('click', pickWhoStarts);

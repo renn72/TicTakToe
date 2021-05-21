@@ -1,7 +1,7 @@
 .timer-display {
   text-align: center;
-  padding: 2rem;
-  font-size: 4rem;
+  padding: 1rem;
+  font-size: 3rem;
 }
 
 footer {
@@ -111,8 +111,29 @@ footer {
 }
 
 #game-state-display {
-  margin: 3rem auto;
+  margin: 2rem auto;
+  width: 160px;
+  height: 160px;
+  border-radius: 80px;
+  box-shadow: 0 0 5px mistyrose;
+  background-color: var(--main-box-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#game-state-display-text {
+  margin: 2rem auto;
+  width: 160px;
+  height: 160px;
   text-align: center;
+  line-height: 160px;
+}
+
+#game-state-display-img {
+  width: 80%;
+  height: 80%;
 }
 
 button.restart-btn {
