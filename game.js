@@ -69,11 +69,13 @@ function startGame() {
   currentTurn = 0;
   playedSquares = [];
   gameWon = false;
+  gameStateDisplay.style.transform = '';
   setPlayerName();
   setPlayerIcon();
   clearSplash();
   generateGame();
   setTimer();
+  setGameStateDisplay();
 }
 
 function handlerBoardSquare(event) {
@@ -91,6 +93,8 @@ function handlerBoardSquare(event) {
   if (checkWinState()) {
     console.log('winner');
     gameStateDisplayText.textContent = `${currentPlayer.name} wins!`;
+    gameStateDisplayImage.classList.add('hidden');
+    gameStateDisplayText.classList.remove('hidden');
     return;
   }
 
@@ -98,6 +102,8 @@ function handlerBoardSquare(event) {
   if (currentTurn === 9) {
     console.log('draw');
     gameStateDisplayText.textContent = "It's a Draw!";
+    gameStateDisplayImage.classList.add('hidden');
+    gameStateDisplayText.classList.remove('hidden');
   } else {
     console.log('playing');
     if (currentPlayer === player2) {
@@ -215,6 +221,12 @@ function checkWinState() {
 }
 
 // startup functions
+
+function setGameStateDisplay() {
+  gameStateDisplayImage.classList.add('hidden');
+  gameStateDisplayText.classList.remove('hidden');
+  gameStateDisplayText.textContent = 'Click to start';
+}
 
 function setPlayerName() {
   if (playerName.value) {
