@@ -92,7 +92,7 @@ function handlerBoardSquare(event) {
 
   if (checkWinState()) {
     console.log('winner');
-    gameStateDisplayText.textContent = `${currentPlayer.name} wins!`;
+    gameStateDisplayText.textContent = `Winner!`;
     gameStateDisplayImage.classList.add('hidden');
     gameStateDisplayText.classList.remove('hidden');
     return;
